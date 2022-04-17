@@ -1,7 +1,7 @@
 <!--  -->
 <template>
   <el-header class="header">
-    <span @click="toggle">
+    <span @click="toggle" class="toggle">
       <el-icon-expand v-if="collapse" />
       <el-icon-fold v-else />
     </span>
@@ -24,5 +24,8 @@
     padding: 0 20px !important;
     display: flex;
     align-items: center;
+    .toggle {
+      cursor: pointer;
+    }
   }
 </style>
