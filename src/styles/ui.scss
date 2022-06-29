@@ -1,0 +1,8 @@
+// 修改组件库内部的样式
+
+.ll-define-dialog-height {
+  .el-dialog__body {
+    height: 600px;
+    overflow: scroll;
+  }
+}

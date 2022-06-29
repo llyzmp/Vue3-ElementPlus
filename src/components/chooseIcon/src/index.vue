@@ -2,14 +2,25 @@
   <el-button @click="handleClick" type="primary">
     <slot></slot>
   </el-button>
-  <el-dialog :title="title" v-model="dialogVisible">
-  112121
-
-  </el-dialog>
+  <div class="ll-define-dialog-height">
+    <el-dialog :title="title" v-model="dialogVisible">
+      <div class="container">
+        <div class="item" v-for="(item, index) in Object.keys(ElIcons)" :key="index">
+          <div>
+            <component :is="`el-icon-${toLine(item)}`"></component>
+          </div>
+          <div>{{ item }}</div>
+        </div>
+      </div>
+  
+    </el-dialog>
+  </div>
 </template>
 
 <script lang='ts' setup>
+import * as ElIcons from '@element-plus/icons-vue'
 import { watch, ref } from 'vue'
+import { toLine } from '../../../utils'
 let props = defineProps<{
   // 弹出框的标题
   title: string,
@@ -37,4 +48,24 @@ watch(() => dialogVisible.value, val => {
 
 </script>
 <style lang='scss' scoped>
+.container {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.item {
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 15px;
+  cursor: pointer;
+  height: 90px;
+  font-size: 16px;
+}
+svg {
+  width: 2em;
+  height: 2em;
+}
 </style>
