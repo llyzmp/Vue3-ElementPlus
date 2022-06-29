@@ -5,7 +5,12 @@
   <div class="ll-define-dialog-height">
     <el-dialog :title="title" v-model="dialogVisible">
       <div class="container">
-        <div class="item" v-for="(item, index) in Object.keys(ElIcons)" :key="index">
+        <div
+          class="item"
+          v-for="(item, index) in Object.keys(ElIcons)"
+          :key="index"
+          @click="handleCopy(item)"
+        >
           <div>
             <component :is="`el-icon-${toLine(item)}`"></component>
           </div>
@@ -21,6 +26,8 @@
 import * as ElIcons from '@element-plus/icons-vue'
 import { watch, ref } from 'vue'
 import { toLine } from '../../../utils'
+import { useCopy } from '../../../hooks/useCopy'
+
 let props = defineProps<{
   // 弹出框的标题
   title: string,
@@ -35,6 +42,11 @@ let dialogVisible = ref<boolean>(props.visible)
 let handleClick = () => {
   // 修改父组件的数据
   emits('update:visible', !props.visible)
+}
+let handleCopy = (item: string) => {
+  let text = `<el-icon-${toLine(item)} />`
+  useCopy(text)
+  dialogVisible.value = false
 }
 
 // 监听visible变化
