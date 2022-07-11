@@ -17,6 +17,8 @@ for(let i in Icons) {
 }
 
 console.log('mUI', mUI)
+// 全局组件引用报错
+// app.use(router).use(ElementPlus).use(mUI)
 
-app.use(router).use(ElementPlus).use(mUI)
+app.use(router).use(ElementPlus)
 app.mount('#app')
